@@ -49,15 +49,3 @@ O arquivo principal que executa o projeto. Coordena a captação de dados com Me
 
 #### requirements.txt
 Lista de dependências necessárias para o funcionamento do projeto, que podem ser instaladas com o comando `pip install -r requirements.txt`.
-
----
-
-## Tutorial de Instalação
-
-Para rodar o ClawMotion em seu ambiente local, siga os passos abaixo:
-
-### 1. Instale o Python 3.x
-Verifique se o Python está instalado em sua máquina. Você pode verificar digitando o seguinte comando no terminal:
-
-```bash
-python --version
