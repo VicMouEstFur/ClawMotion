@@ -17,3 +17,14 @@ Funcionalidades:
 
 Este arquivo é importante para permitir ajustes finos no funcionamento do sistema de controle da garra.
 """
+# Sensibilidade do movimento
+# Ajusta o quanto o movimento da mão afeta o controle da garra. Um valor maior torna a garra mais sensível aos gestos.
+SENSIBILITY = 1.0  # Sensibilidade padrão (você pode ajustar este valor conforme necessário)
+
+# Zona morta
+# Movimentos menores do que estes valores serão ignorados para evitar ruído nos gestos detectados.
+DEAD_ZONE = [2, 2, 2]  # Zona morta para os eixos X, Y e Z (ignorará movimentos muito pequenos)
+
+# Período de captação
+# Define o intervalo de tempo (em segundos) entre cada captura de posição da mão.
+PERIODO_CAPTACAO = 0.5  # 0.5 segundos de intervalo para cada captura de movimento

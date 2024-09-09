@@ -17,3 +17,44 @@ Funcionalidades:
 
 Este módulo é essencial para traduzir os movimentos físicos da mão em comandos digitais que controlam a garra mecânica.
 """
+from .config import SENSIBILITY, DEAD_ZONE
+
+class GestureDetector:
+    def __init__(self):
+        """
+        Inicializa o detector de gestos e define a posição inicial como [0, 0, 0].
+        A posição inicial é usada para calcular o movimento em relação ao ponto de origem.
+        """
+        self.current_position = [0, 0, 0]
+
+    def detect_movement(self, new_position):
+        """
+        Detecta o movimento da mão, calcula o vetor de movimento e aplica a sensibilidade e a zona morta.
+
+        Parâmetros:
+        - new_position: Lista [x, y, z] com a nova posição da mão capturada pelo rastreamento.
+
+        Retorna:
+        - Vetor de movimento ajustado pela sensibilidade e zona morta.
+        """
+        # Calcula a diferença entre a nova posição e a posição atual (vetor de movimento)
+        movement_vector = [
+            new_position[0] - self.current_position[0],  # Diferença em X
+            new_position[1] - self.current_position[1],  # Diferença em Y
+            new_position[2] - self.current_position[2],  # Diferença em Z (profundidade)
+        ]
+
+        # Aplica o fator de sensibilidade ao vetor de movimento
+        movement_vector = [v * SENSIBILITY for v in movement_vector]
+
+        # Aplica a zona morta para ignorar movimentos muito pequenos
+        movement_vector = [
+            v if abs(v) > DEAD_ZONE[i] else 0  # Se o valor for menor que a zona morta, ignora o movimento
+            for i, v in enumerate(movement_vector)
+        ]
+
+        # Atualiza a posição atual da mão
+        self.current_position = new_position
+
+        # Retorna o vetor de movimento ajustado
+        return movement_vector

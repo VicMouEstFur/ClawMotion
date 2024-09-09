@@ -16,3 +16,8 @@ Funcionalidades:
 
 Este arquivo é importante para garantir que o sistema de controle da garra esteja conectado corretamente ao broker MQTT.
 """
+# Endereço do broker MQTT (pode ser o IP local ou o endereço de um servidor MQTT remoto)
+BROKER = 'localhost'  # Substitua por 'seu.broker.mqtt' ou o IP do seu broker
+
+# Tópico no qual os dados de movimento serão publicados
+TOPIC = 'garra/movimentos'
